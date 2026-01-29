@@ -6,12 +6,13 @@ import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.context.annotation.Bean
+import org.springframework.web.bind.annotation.CrossOrigin
 import java.util.UUID
 
 @SpringBootApplication
+@CrossOrigin("*")
 class InventoryServiceApplication {
     @Bean
-
     fun start(repo: ProductRepository) = CommandLineRunner {
 
         repo.save(
@@ -19,7 +20,8 @@ class InventoryServiceApplication {
                 id = UUID.randomUUID().toString(),
                 name = "Laptop",
                 price = 1500.0,
-                quantity = 12
+                quantity = 12,
+                selected = true
             )
 
         )
@@ -29,7 +31,8 @@ class InventoryServiceApplication {
                 id = UUID.randomUUID().toString(),
                 name = "Console",
                 price = 500.0,
-                quantity = 8
+                quantity = 8,
+                selected = false
             )
 
         )
